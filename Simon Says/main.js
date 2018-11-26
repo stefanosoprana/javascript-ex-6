@@ -6,31 +6,43 @@
 // dice quanti e quali dei numeri da indovinare sono
 // stati individuati
 
-
-
-var numeri = [1,2,3];
-for (var i = 0; i < numeri.length; i++) {
-  alert(numeri[i])
-  console.log(numeri[i]);
+function randomNumber(min,max) {
+  var numeroCasuale = Math.floor(Math.random() * (max - min + 1) + min);
+  return numeroCasuale;
 }
 
-setTimeout(countDown, 1000);
+var numeri = [];
+
+for (var i = 0; i < 5; i++) {
+
+  numeroRandom = randomNumber(0,99)
+
+  numeri.push(numeroRandom);
+  console.log(numeroRandom);
+};
+
+alert('I numeri da ricordare sono ' + numeri)
+
+setTimeout(countDown, 30000);
 function countDown() {
 
-  for (var i = 0; i < 3; i++) {
+  var counter = 0;
+  var numeriTotali = '';
 
-    var numeroUtente = parseInt(prompt('inserisci i numeri che ti ricordi'));
+    for (var i = 0; i < numeri.length; i++) {
 
-    // var numeroTrovato = false;
+      var numeroUtente = parseInt(prompt('inserisci i numeri che ti ricordi'));
+      if (numeri.includes(numeroUtente)) {
 
-    if (numeroUtente == numeri[i]) {
+        counter += 1;
+        numeriTotali += numeroUtente + ' ';
 
-      // numeroTrovato = true;
+        console.log('giusto');
+        console.log(counter);
 
-      console.log(numeroUtente);
+      }
+    };
 
-      // console.log(numeroTrovato);
+    document.writeln('I numeri che ti sei ricordato sono ' + counter + ' e sono i seguenti: ' + numeriTotali);
 
-    }
-  };
 };
